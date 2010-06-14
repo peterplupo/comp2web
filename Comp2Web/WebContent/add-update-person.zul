@@ -1,0 +1,63 @@
+<?page id="page2" title="Add-Update-Person" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window
+		apply="br.ufrj.dcc.comp2.databinding.view.DatabindigAddUpdatePersonComposer"
+		xmlns="http://www.zkoss.org/2005/zul"
+		xmlns:a="http://www.zkoss.org/2005/zk/annotation" title=" Add Person"
+		border="normal" width="500px" maximizable="true" closable="true"
+		visible="false" id="addUpdatePerson"
+		action="onshow:anima.appear(#{self});">
+		<grid>
+			<rows>
+				<row>
+					*First Name:
+					<textbox id="name"
+						value="@{addUpdatePersonCtrl.person.name}"
+						constraint="/^[A-Z][a-zA-Z]+$/: only letters" />
+				</row>
+				<row>
+					*Title:
+					<combobox id="title"
+						model="@{addUpdatePersonCtrl.titleModel}"
+						selectedItem="@{addUpdatePersonCtrl.person.title}" readonly="true"
+						constraint="no empty" /><!--
+						<combobox id="title" readonly="true"
+						constraint="no empty">
+						<comboitem label="Engineer" />
+						<comboitem label="Tester" />
+						<comboitem label="Manager" />
+						<comboitem label="Architect" />
+						<comboitem label="Professor" />
+						<comboitem label="Programmer" />
+						</combobox>
+					-->
+				</row>
+				<row>
+					*Birthday
+					<datebox id="birthday"
+						value="@{addUpdatePersonCtrl.person.birthday}" format="dd/MM/yyyy"
+						constraint="no empty" />
+				</row>
+				<row>
+					*E-mail
+					<textbox id="email"
+						value="@{addUpdatePersonCtrl.person.email}"
+						constraint="/.+@.+\.[a-z]+/: no e-mail format" />
+				</row>
+				<row>
+
+					*Image File:
+					<vbox id="pic">
+						<image id="img" height="100px" width="100px"
+							src="img/avatar.png" />
+						Upload your hot shot:
+						<fileupload label="Browse..."
+							onUpload="img.setContent(event.media)" />
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+		<button id="AddUpdatePerson" />
+		<button id="returnPage" label="Return" />
+	</window>
+</zk>
