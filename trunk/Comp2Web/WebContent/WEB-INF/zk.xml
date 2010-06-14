@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Created by ZK Studio
+-->
+
+<zk>
+	<device-config>
+		<device-type>ajax</device-type>
+		<timeout-uri>/timeout.zul</timeout-uri><!-- An empty URL can cause the browser to reload the same URL -->
+	</device-config>
+	<preference>
+		<name>JpaUtil.PersistenceUnitName</name>
+		<value>comp2web_persistence_unit</value>
+	</preference>
+	<!-- Specify JPA "OpenEntityManagerInView" Listener -->
+	<listener>
+ 		<description>JPA "OpenEntityManagerInView" Listener</description>
+ 		<listener-class>org.zkoss.zkplus.jpa.OpenEntityManagerInViewListener</listener-class>
+ 	</listener>
+	
+</zk>
