@@ -65,7 +65,7 @@
 
 	<window xmlns:w="http://www.zkoss.org/2005/zk/client"
 		id="showPicture" visible="false" border="normal" closable="true"
-		width="320px" height="330px"
+		width="320px" height="330px" 
 		onClose="self.visible =false; event.stopPropagation();">
 		<div align="center">
 			<image id="img" height="300px" width="300px"
