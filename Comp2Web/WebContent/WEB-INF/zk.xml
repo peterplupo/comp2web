@@ -9,6 +9,13 @@
 		<device-type>ajax</device-type>
 		<timeout-uri>/timeout.zul</timeout-uri><!-- An empty URL can cause the browser to reload the same URL -->
 	</device-config>
+	<system-config>
+		<disable-event-thread>false</disable-event-thread>
+	</system-config>
+	<preference>
+		<name>org.zkoss.zul.Window.defaultActionOnShow</name>
+		<value>slideDown</value>
+	</preference>
 	<preference>
 		<name>JpaUtil.PersistenceUnitName</name>
 		<value>comp2web_persistence_unit</value>
