@@ -15,7 +15,7 @@ public class Person extends Model {
 	private String name;
 	private String title;
 	private String email;
-	@Temporal(value = TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.DATE)
 	private Date birthday;
 	@Lob
 	private byte[] picture;
