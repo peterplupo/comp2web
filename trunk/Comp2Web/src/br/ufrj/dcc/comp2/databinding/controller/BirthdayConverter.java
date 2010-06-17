@@ -18,7 +18,9 @@ public class BirthdayConverter implements TypeConverter {
 
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-		return format.format(birthday);
+		String formatedBirthday = format.format(birthday);
+
+		return formatedBirthday;
 	}
 
 }
