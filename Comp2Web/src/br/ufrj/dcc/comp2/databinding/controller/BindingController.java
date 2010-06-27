@@ -15,15 +15,15 @@ public class BindingController {
 		em.persist(entity);
 	}
 
-	public <T extends Model> void update(T selected) {
+	public <T extends Model> T update(T selected) {
 		EntityManager em = JpaUtil.getEntityManager();
-		em.merge(selected);
+		return em.merge(selected);
 	}
 
 	@SuppressWarnings("unchecked")
 	public <T extends Model> List<T> getAll(Class<T> clazz) {
 		EntityManager em = JpaUtil.getEntityManager();
-		return (List<T>) em.createQuery("SELECT x FROM " + clazz.getName() + " x").getResultList();
+		return em.createQuery("SELECT x FROM " + clazz.getName() + " x", clazz).getResultList();
 	}
 
 	public <T extends Model> T getById(Class<T> clazz, Integer id) {
