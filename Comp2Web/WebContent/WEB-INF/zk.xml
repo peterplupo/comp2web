@@ -25,5 +25,4 @@
  		<description>JPA "OpenEntityManagerInView" Listener</description>
  		<listener-class>org.zkoss.zkplus.jpa.OpenEntityManagerInViewListener</listener-class>
  	</listener>
-	
 </zk>
