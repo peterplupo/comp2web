@@ -1,0 +1,21 @@
+<?page title="Guess a number..." contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.cdi.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<window title="Guess a number..." border="normal" width="550px">
+	<vbox>
+		<label value="@{game.message}" style="color:red"/>
+		<span>
+		I'm thinking of a number between <label value="@{game.smallest}" style="color:blue"/> and 
+		<label value="@{game.biggest}" style="color:blue"/>. You have <label value="@{game.remainingGuesses}" style="color:blue"/> 
+		guesses remaining.
+		</span>
+		<span>
+			Your guess:
+			<intbox id="inputGuess" value="@{game.guess, save-when='guessButton.onClick'}" constraint="no empty" disabled="@{game.noMoreGuess}"/>
+		</span>
+		<span>
+			<button id="guessButton" label="Guess" disabled="@{game.noMoreGuess}"/>
+			<button id="restartButton" label="Reset" onClick="game.reset();binder.loadAll()"/>
+		</span>
+	</vbox>
+</window>
