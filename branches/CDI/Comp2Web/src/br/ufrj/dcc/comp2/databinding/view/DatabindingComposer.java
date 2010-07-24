@@ -25,6 +25,7 @@ import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
 import br.ufrj.dcc.comp2.databinding.controller.BindingController;
@@ -72,36 +73,43 @@ public class DatabindingComposer extends GenericForwardComposer {
 
 	public void onClick$delete(Event event) {
 
-		// try {
-		// if (Messagebox.show("Are you sure?", "Delete confirmation",
-		// Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) ==
-		// Messagebox.YES) {
+		final ForwardEvent fe = (ForwardEvent) event;
 
-		ForwardEvent fe = (ForwardEvent) event;
+		try {
+			Messagebox.show("Are you sure?", "Delete confirmation",
+					Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
+					new EventListener() {
 
-		Listitem listItem = (Listitem) fe.getOrigin().getTarget().getParent()
-				.getParent();
-		Integer idListCell = Integer.parseInt(listItem.getFirstChild().getId());
+						@Override
+						public void onEvent(Event eventMB) throws Exception {
+							if (((Integer) eventMB.getData()).intValue() == Messagebox.YES) {
+								Listitem listItem = (Listitem) fe.getOrigin()
+										.getTarget().getParent().getParent();
+								Integer idListCell = Integer.parseInt(listItem
+										.getFirstChild().getId());
 
-		Iterator<Person> itPerson = model.iterator();
+								Iterator<Person> itPerson = model.iterator();
 
-		while (itPerson.hasNext()) {
-			Person person = itPerson.next();
-			if (person.getId().equals(idListCell)) {
-				bindingController.remove(person);
-				model.remove(person);
-				break;
-			}
+								while (itPerson.hasNext()) {
+									Person person = itPerson.next();
+									if (person.getId().equals(idListCell)) {
+										bindingController.remove(person);
+										model.remove(person);
+										break;
+									}
+								}
+
+								EventQueues.lookup("comp2web",
+										EventQueues.DESKTOP, true).publish(
+										(Event) fe);
+
+							}
+
+						}
+					});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-
-		EventQueues.lookup("comp2web", EventQueues.DESKTOP, true)
-				.publish(event);
-		// }
-		// } catch (NumberFormatException e) {
-		// e.printStackTrace();
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
 
 	}
 
