@@ -25,7 +25,6 @@ import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
-import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
 import br.ufrj.dcc.comp2.databinding.controller.BindingController;
@@ -73,36 +72,36 @@ public class DatabindingComposer extends GenericForwardComposer {
 
 	public void onClick$delete(Event event) {
 
-		try {
-			if (Messagebox.show("Are you sure?", "Delete confirmation",
-					Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) == Messagebox.YES) {
+		// try {
+		// if (Messagebox.show("Are you sure?", "Delete confirmation",
+		// Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) ==
+		// Messagebox.YES) {
 
-				ForwardEvent fe = (ForwardEvent) event;
+		ForwardEvent fe = (ForwardEvent) event;
 
-				Listitem listItem = (Listitem) fe.getOrigin().getTarget()
-						.getParent().getParent();
-				Integer idListCell = Integer.parseInt(listItem.getFirstChild()
-						.getId());
+		Listitem listItem = (Listitem) fe.getOrigin().getTarget().getParent()
+				.getParent();
+		Integer idListCell = Integer.parseInt(listItem.getFirstChild().getId());
 
-				Iterator<Person> itPerson = model.iterator();
+		Iterator<Person> itPerson = model.iterator();
 
-				while (itPerson.hasNext()) {
-					Person person = itPerson.next();
-					if (person.getId().equals(idListCell)) {
-						bindingController.remove(person);
-						model.remove(person);
-						break;
-					}
-				}
-
-				EventQueues.lookup("comp2web", EventQueues.DESKTOP, true)
-						.publish(event);
+		while (itPerson.hasNext()) {
+			Person person = itPerson.next();
+			if (person.getId().equals(idListCell)) {
+				bindingController.remove(person);
+				model.remove(person);
+				break;
 			}
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
+
+		EventQueues.lookup("comp2web", EventQueues.DESKTOP, true)
+				.publish(event);
+		// }
+		// } catch (NumberFormatException e) {
+		// e.printStackTrace();
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
 
 	}
 
