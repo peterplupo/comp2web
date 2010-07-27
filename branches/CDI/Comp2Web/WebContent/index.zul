@@ -32,7 +32,7 @@
 					<listcell label="@{person.name}" />
 					<listcell label="@{person.title}" />
 					<listcell
-						label="@{person.birthday, converter='br.ufrj.dcc.comp2.databinding.controller.BirthdayConverter'}" />
+						label="@{person.birthday, converter='br.ufrj.dcc.comp2.databinding.view.converters.BirthdayConverter'}" />
 					<listcell label="@{person.email}" />
 					<listcell>
 						<toolbarbutton id="picture" label="see picture" />

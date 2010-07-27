@@ -1,4 +1,4 @@
-package br.ufrj.dcc.comp2.databinding.controller;
+package br.ufrj.dcc.comp2.databinding.view.converters;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
